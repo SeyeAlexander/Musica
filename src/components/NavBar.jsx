@@ -4,7 +4,7 @@ import Logo from "../assets/logo.svg";
 
 const NavBar = () => {
   return (
-    <Box py='4' ml='6'>
+    <Box py='4' ml='6' position='fixed' w='100%' top='0' bg='#1E1E1E' h='10vh' opacity='0.97' zIndex='1'>
       <HStack spacing='5vw'>
         <Image src={Logo} w='34px' />
 

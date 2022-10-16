@@ -1,15 +1,21 @@
-import { Container } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import HeroSection from "./HeroSection";
 import NavBar from "./NavBar";
-import NewRelease from "./NewRelease";
+import MusicList from "./MusicList";
 import Player from "./Player";
+import Audio from "./Audio";
 
 const Home = () => {
   return (
-    <Container maxW='8xl' mx='auto'>
+    <Container maxW='8xl' mx='auto' position='relative'>
       <NavBar />
       <HeroSection />
-      <NewRelease />
+      {/* <Audio /> */}
+      <MusicList banner={"Made for Seye"} />
+      <MusicList banner={"New releases"} />
+      <Box pb='100px'>
+        <MusicList banner={"Popular around you"} />
+      </Box>
       <Player />
     </Container>
   );

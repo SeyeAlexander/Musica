@@ -1,14 +1,14 @@
 import { Image, Text, VStack } from "@chakra-ui/react";
 
-const ReleaseItem = ({ url, title }) => {
+const MusicItem = ({ url, title }) => {
   return (
     <VStack spacing={2} align='flexStart'>
       <Image src={url} w='153px' />
-      <Text fontSize='xs' fontWeight='thin'>
+      <Text fontSize='12px' fontWeight='thin'>
         {title}
       </Text>
     </VStack>
   );
 };
 
-export default ReleaseItem;
+export default MusicItem;
