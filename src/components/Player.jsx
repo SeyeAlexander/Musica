@@ -21,7 +21,7 @@ import RepeatIcon from '../assets/repeate-one.svg';
 
 const Player = () => {
   return (
-    <Box position="fixed" bottom="0" bg="#1E1E1E" w="1410px">
+    <Box position="fixed" bottom="0" bg="#1E1E1E" w="1410px" h="100px">
       <Flex color="#EFEEE0" bg="#1E1E1E" opacity="0.99" ml="95px">
         <HStack w="5%">
           <Image src={albumArt} w="49px" borderRadius="14px"></Image>
@@ -32,7 +32,7 @@ const Player = () => {
           <Text fontSize="10px">James</Text>
         </VStack>
 
-        <VStack w="59%" py={4} px={6} spacing={4}>
+        <VStack w="63%" py={4} px={6} spacing={4}>
           <HStack spacing="53px">
             <Box>
               <Image src={ShuffleIcon} w="18px" />
@@ -67,7 +67,7 @@ const Player = () => {
           </Slider>
         </VStack>
 
-        <VStack w="28%" py={5} px={2} mt="5" align="flexStart">
+        <VStack w="24%" py={5} px={2} mt="5" align="flexStart">
           <HStack>
             <Image src={VolIcon} w="18px" />
             <Progress

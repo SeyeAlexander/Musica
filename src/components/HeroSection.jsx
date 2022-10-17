@@ -29,18 +29,18 @@ const HeroSection = () => {
             Curated playlists
           </Text>
 
-          <VStack spacing="2" align="flexStart" w="273px">
+          <VStack spacing="2" align="flexStart" w="290px">
             <Text fontSize="35px" lineHeight="42px" fontWeight="700">
               R & B Hits
             </Text>
             <Text fontSize="14px" lineHeight="16.8px" fontWeight="400">
-              All mine, Lie again, Pretty call me everyday, Out of time, No
-              love, Bad habit <br /> and so much more
+              All mine, Lie again, Pretty call me everyday, <br /> Out of time,
+              No love, Bad habit <br /> and so much more
             </Text>
           </VStack>
 
           <HStack>
-            <Image src={HeartIcon} w="14px" />
+            <Image src={HeartIcon} w="14px" h="14px" />
             <Text fontSize="14px" lineHeight="16.8px">
               33.4k Likes
             </Text>
@@ -48,12 +48,12 @@ const HeroSection = () => {
         </VStack>
 
         <VStack w="50%">
-          <Image src={Picture} h="373px" />
+          <Image src={Picture} w="381px" />
         </VStack>
       </Flex>
 
       <VStack w="70%" align="flexStart">
-        <Text fontSize="24px" fontWeight="md">
+        <Text fontSize="24px" fontWeight="700">
           Top Charts
         </Text>
 

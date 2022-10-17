@@ -4,6 +4,10 @@
   font-family: "Quicksand", sans-serif;
 }
 
+html {
+  background-color: #1E1E1E
+}
+
 .overflow::-webkit-scrollbar {
   display: none;
 }

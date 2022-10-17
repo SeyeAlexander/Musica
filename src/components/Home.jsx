@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import MusicList from './MusicList';
 import Player from './Player';
 import SideBar from './SideBar';
+import Banner from './Banner';
 
 const Home = () => {
   return (
@@ -15,10 +16,16 @@ const Home = () => {
           <HeroSection />
         </Flex>
       </Box>
+
       <Box pb="120px">
-        <MusicList banner={'Made for Seye'} />
-        <MusicList banner={'New releases'} />
-        <MusicList banner={'Popular around you'} />
+        <Banner banner={'Made for Seye'} />
+        <MusicList />
+
+        <Banner banner={'New releases'} />
+        <MusicList />
+
+        <Banner banner={'Popular around you'} />
+        <MusicList />
       </Box>
       <Player />
     </Container>
