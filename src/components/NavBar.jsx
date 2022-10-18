@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import Logo from '../assets/logo.svg';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -25,7 +26,9 @@ const NavBar = () => {
       zIndex="1"
     >
       <HStack spacing="5vw">
-        <Image src={Logo} w="34px" />
+        <Link to="/">
+          <Image src={Logo} w="34px" />
+        </Link>
 
         <Box w="25vw">
           <form>

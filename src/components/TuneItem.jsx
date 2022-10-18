@@ -9,7 +9,7 @@ const TuneItem = ({ img, title, type, time }) => {
       bg="#33373B5E"
       borderRadius="20px"
       pl="4"
-      py="4"
+      py="3"
       pr="50px"
       color="#EFEEE0"
       justify="space-between"

@@ -1,4 +1,5 @@
 import { Flex, VStack, Image } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import HomeIcon from '../assets/Home.svg';
 import PlaylistIcon from '../assets/playlist.svg';
 import RadioIcon from '../assets/radio.svg';
@@ -11,9 +12,15 @@ const SideBar = () => {
     <Flex position="fixed">
       <VStack w="60px" spacing={8}>
         <VStack borderRadius="15px" py="5" px="1" bg="#1A1E1F" spacing={6}>
-          <Image src={HomeIcon} w="35px" />
-          <Image src={PlaylistIcon} w="22px" />
-          <Image src={RadioIcon} w="22px" />
+          <Link to="/">
+            <Image src={HomeIcon} w="35px" />
+          </Link>
+          <Link to="/playlists">
+            <Image src={PlaylistIcon} w="22px" />
+          </Link>
+          <Link to="/collections">
+            <Image src={RadioIcon} w="22px" />
+          </Link>
           <Image src={VideoIcon} w="22px" />
         </VStack>
 
