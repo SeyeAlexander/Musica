@@ -18,8 +18,17 @@ import PreviousIcon from '../assets/previous.svg';
 import PlayIcon from '../assets/VectorP.svg';
 import NextIcon from '../assets/next.svg';
 import RepeatIcon from '../assets/repeate-one.svg';
+import { useState } from 'react';
 
-const Player = () => {
+const Player = ({ handlePlayBack }) => {
+  const [playBack, setPlayBack] = useState('');
+
+  const handlePlay = () => {
+    setPlayBack('pause');
+    handlePlayBack(playBack);
+    console.log(playBack);
+  };
+
   return (
     <Box position="fixed" bottom="0" bg="#1E1E1E" w="1410px" h="100px">
       <Flex color="#EFEEE0" bg="#1E1E1E" opacity="0.99" ml="95px">
@@ -40,7 +49,7 @@ const Player = () => {
             <Box>
               <Image src={PreviousIcon} w="18px" />
             </Box>
-            <Box>
+            <Box onClick={handlePlay}>
               <Image
                 src={PlayIcon}
                 borderRadius="50%"
