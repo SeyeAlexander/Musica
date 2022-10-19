@@ -34,13 +34,17 @@ const Audio = () => {
     audioPlayer.current.play();
   };
 
-  // const onSkipBack = () => {};
+  const skipBack = async () => {
+    (currentIndex - 1) % songList.length === -1
+      ? await setCurrentSong(songList[songList.length - 1])
+      : await setCurrentSong(songList[(currentIndex - 1) % songList.length]);
+    audioPlayer.current.play();
+  };
 
   return (
     <Box>
       <audio ref={audioPlayer} src={currentSong.song} />
-      <Player handlePlayBack={onAudioPlay} handleForwardSkip={skipForward} />
-      {/* handleBackSkip={onSkipBack} */}
+      <Player handlePlayBack={onAudioPlay} handleForwardSkip={skipForward} handleBackSkip={skipBack} />
     </Box>
   );
 };
