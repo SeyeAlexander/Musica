@@ -20,27 +20,27 @@ const Audio = () => {
     { id: "678", title: "The Box", artist: "Roddy Ricch", song: `${boxy}` },
   ];
 
-  const [currentSong, setCurrentSong] = useState(songList[4]);
-  const currentIndex = songList.findIndex((song) => song.id === currentSong.id);
+  const [currentSong, setCurrentSong] = useState(songList[1]);
+  let currentIndex = songList.findIndex((song) => song.id === currentSong.id);
 
   const onAudioPlay = (playBack) => {
     playBack === "play" ? audioPlayer.current.play() : audioPlayer.current.pause();
-    console.log(currentSong);
+    console.log(playBack);
     console.log(currentIndex);
   };
 
-  // const onSkipForward = () => {
-
-  // };
+  const skipForward = async () => {
+    await setCurrentSong(songList[(currentIndex + 1) % songList.length]);
+    audioPlayer.current.play();
+  };
 
   // const onSkipBack = () => {};
 
   return (
     <Box>
       <audio ref={audioPlayer} src={currentSong.song} />
-
-      <Player handlePlayBack={onAudioPlay} />
-      {/* handleForwardSkip={onSkipForward} handleBackSkip={onSkipBack} */}
+      <Player handlePlayBack={onAudioPlay} handleForwardSkip={skipForward} />
+      {/* handleBackSkip={onSkipBack} */}
     </Box>
   );
 };

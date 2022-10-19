@@ -18,10 +18,12 @@ const Player = ({ handlePlayBack, handleForwardSkip, handleBackSkip }) => {
 
   const handleSkipForward = () => {
     handleForwardSkip();
+    setPlayBack("pause");
   };
 
   const handleSkipBack = () => {
     handleBackSkip();
+    setPlayBack("pause");
   };
 
   return (
