@@ -8,8 +8,9 @@ import NextIcon from "../assets/next.svg";
 import RepeatIcon from "../assets/repeate-one.svg";
 import { useState } from "react";
 
-const Player = ({ handlePlayBack, handleForwardSkip, handleBackSkip }) => {
+const Player = ({ handlePlayBack, handleForwardSkip, handleBackSkip, handleLoopPlay }) => {
   const [playBack, setPlayBack] = useState("play");
+  const [loopPlayBack, setLoopPlayBack] = useState("yeah");
 
   const handlePlay = () => {
     playBack === "pause" ? setPlayBack("play") : setPlayBack("pause");
@@ -26,8 +27,13 @@ const Player = ({ handlePlayBack, handleForwardSkip, handleBackSkip }) => {
     setPlayBack("pause");
   };
 
+  const handleLoop = () => {
+    loopPlayBack === "nah" ? setLoopPlayBack("yeah") : setLoopPlayBack("nah");
+    handleLoopPlay(loopPlayBack);
+  };
+
   return (
-    <Box position='fixed' bottom='0' bg='#1E1E1E' w='1410px' h='100px'>
+    <Box position='fixed' bottom='0' bg='#1E1E1E' w='1410px' h='90px'>
       <Flex color='#EFEEE0' bg='#1E1E1E' opacity='0.99' ml='95px'>
         <HStack w='5%'>
           <Image src={albumArt} w='49px' borderRadius='14px'></Image>
@@ -56,12 +62,12 @@ const Player = ({ handlePlayBack, handleForwardSkip, handleBackSkip }) => {
               <Image src={NextIcon} w='18px' />
             </Box>
 
-            <Box>
+            <Box onClick={handleLoop}>
               <Image src={RepeatIcon} w='18px' />
             </Box>
           </HStack>
 
-          <Slider colorScheme='yellow' defaultValue={40}>
+          <Slider colorScheme='yellow' value={0}>
             <SliderTrack>
               <SliderFilledTrack />
             </SliderTrack>
@@ -80,4 +86,4 @@ const Player = ({ handlePlayBack, handleForwardSkip, handleBackSkip }) => {
   );
 };
 
-export default Player;
+// export default Player;

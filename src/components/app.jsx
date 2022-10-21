@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import Playlist from "./Playlist";
 import Collection from "./Collection";
-import Audio from "./Audio";
+// import Audio from "./Audio";
 import NavBar from "./NavBar";
+import AudioPlayer from "./AudioPlayer";
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
             <Route path='/collections' element={<Collection />} />
           </Routes>
 
-          <Audio />
+          {/* <Audio /> */}
+          <AudioPlayer />
         </Container>
       </Box>
     </Router>
