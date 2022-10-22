@@ -63,6 +63,22 @@ const AudioPlayer = () => {
     setVal(0);
   };
 
+  const shuffle = async () => {
+    const shuffleList = (arr) => {
+      if (arr.length === 1) return arr;
+      const rand = Math.floor(Math.random() * arr.length);
+      const item = arr[rand];
+      console.log(item);
+      return item;
+    };
+
+    await setCurrentSong(shuffleList(songList));
+    shufflePlay === 'nah' ? setShufflePlay('yeah') : setShufflePlay('nah');
+    audioPlay.current.play();
+    setPlayBack('pause');
+    setVal(0);
+  };
+
   const seek = (e) => {
     audioPlay.current.currentTime = e.target.value;
     setVal(audioPlay.current.currentTime);
@@ -74,18 +90,6 @@ const AudioPlayer = () => {
       ? (audioPlay.current.loop = true)
       : (audioPlay.current.loop = false);
     loopPlayBack === 'nah' ? setLoopPlayBack('yeah') : setLoopPlayBack('nah');
-  };
-
-  const shuffle = async () => {
-    await setCurrentSong(songList[(currentIndex + 1) % songList.length]);
-
-    shufflePlay === 'yeah'
-      ? (audioPlay.current.loop = true)
-      : (audioPlay.current.loop = false);
-    shufflePlay === 'nah' ? setShufflePlay('yeah') : setShufflePlay('nah');
-    audioPlay.current.play();
-    setPlayBack('pause');
-    setVal(0);
   };
 
   const handleVolume = (e) => {
@@ -109,10 +113,12 @@ const AudioPlayer = () => {
           <HStack w="5%">
             <Image src={albumArt} w="49px" borderRadius="14px"></Image>
           </HStack>
+
           <VStack w="8%" align="flexStart" spacing={0} mt={5} p={0}>
             <Text fontSize="14px">Seasons in</Text>
             <Text fontSize="10px">James</Text>
           </VStack>
+
           <VStack w="63%" py={4} px={6} spacing={4}>
             <HStack spacing="53px">
               <Box onClick={shuffle}>
@@ -144,17 +150,17 @@ const AudioPlayer = () => {
               </Box>
             </HStack>
 
-            <Box>
+            <Box id="seek">
               <input type="range" ref={seekBar} value={val} onChange={seek} />
             </Box>
           </VStack>
-          s
+
           <VStack w="24%" py={5} px={2} mt="5" align="flexStart">
             <HStack>
               <Box onClick={mute}>
                 <Image src={VolIcon} w="18px" />
               </Box>
-              <Box>
+              <Box id="vol">
                 <input type="range" value={vol} onChange={handleVolume} />
               </Box>
             </HStack>

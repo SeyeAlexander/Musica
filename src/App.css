@@ -11,3 +11,25 @@ html {
 .overflow::-webkit-scrollbar {
   display: none;
 }
+
+#seek input {
+  padding-top: 0px;
+  height: 5px;
+  /* -webkit-appearance: none; */
+  width: 700px;
+  margin-bottom: 10px;
+  /* background-color:#E9C649; */
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+#vol input {
+  padding-top: 0px;
+  height: 5px;
+  /* -webkit-appearance: none; */
+  width: 200px;
+  margin-bottom: 10px;
+  /* background: #E9C649; */
+  transition: background 0.2s ease;
+  cursor: pointer;
+} 
