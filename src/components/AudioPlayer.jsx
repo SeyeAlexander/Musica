@@ -30,25 +30,26 @@ const AudioPlayer = () => {
   const [currentSong, setCurrentSong] = useState(songList[1]);
   const [playBack, setPlayBack] = useState("play");
   const [loopPlayBack, setLoopPlayBack] = useState("yeah");
+  const [shufflePlay, setShufflePlay] = useState("yeah");
   const [val, setVal] = useState(0);
-  const [duration, setDuration] = useState(0);
   const currentIndex = songList.findIndex((song) => song.id === currentSong.id);
 
-  const funct = async () => {
-    await setDuration(audioPlay.current.duration);
-  };
+  useEffect(() => {
+    setInterval(() => {
+      setVal(audioPlay.current.currentTime);
+    }, 3000);
+  }, [3000]);
 
   const handlePlay = () => {
     playBack === "play" ? audioPlay.current.play() : audioPlay.current.pause();
     playBack === "pause" ? setPlayBack("play") : setPlayBack("pause");
-    funct();
   };
 
   const skipForward = async () => {
     await setCurrentSong(songList[(currentIndex + 1) % songList.length]);
     audioPlay.current.play();
     setPlayBack("pause");
-    funct();
+    setVal(0);
   };
 
   const skipBack = async () => {
@@ -57,6 +58,7 @@ const AudioPlayer = () => {
       : await setCurrentSong(songList[(currentIndex - 1) % songList.length]);
     audioPlay.current.play();
     setPlayBack("pause");
+    setVal(0);
   };
 
   const loopPlay = () => {
@@ -64,9 +66,20 @@ const AudioPlayer = () => {
     loopPlayBack === "nah" ? setLoopPlayBack("yeah") : setLoopPlayBack("nah");
   };
 
-  const onScrub = (e) => {
+  const shuffle = async () => {
+    // await setCurrentSong(songList[(currentIndex + 1) % songList.length]);
+
+    shufflePlay === "yeah" ? (audioPlay.current.loop = true) : (audioPlay.current.loop = false);
+    shufflePlay === "nah" ? setShufflePlay("yeah") : setShufflePlay("nah");
+    audioPlay.current.play();
+    setPlayBack("pause");
+    setVal(0);
+  };
+
+  const seek = (e) => {
     audioPlay.current.currentTime = e.target.value;
     setVal(audioPlay.current.currentTime);
+    seekBar.current.max = audioPlay.current.duration;
   };
 
   return (
@@ -108,15 +121,8 @@ const AudioPlayer = () => {
             </HStack>
 
             <Box>
-              <input type='range' ref={seekBar} step='1' min='0' max={duration ? duration : `${duration}`} value={val} onChange={onScrub} />
+              <input type='range' ref={seekBar} value={val} onChange={seek} />
             </Box>
-
-            {/* <Slider ref={seekBar} colorScheme='yellow' defaultValue={val} onClick={handleSeekChange}>
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb />
-            </Slider> */}
           </VStack>
 
           <VStack w='24%' py={5} px={2} mt='5' align='flexStart'>
