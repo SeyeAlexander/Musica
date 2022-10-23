@@ -42,6 +42,16 @@ const AudioPlayer = () => {
     }, 3000);
   }, []);
 
+  useEffect(() => {
+    if (audioPlay.current.ended) {
+      skipForward();
+    } else {
+      playBack === 'pause'
+        ? audioPlay.current.play()
+        : audioPlay.current.pause();
+    }
+  });
+
   const handlePlay = () => {
     playBack === 'play' ? audioPlay.current.play() : audioPlay.current.pause();
     playBack === 'pause' ? setPlayBack('play') : setPlayBack('pause');
@@ -81,7 +91,7 @@ const AudioPlayer = () => {
 
   const seek = (e) => {
     audioPlay.current.currentTime = e.target.value;
-    setVal(audioPlay.current.currentTime);
+    setVal(e.target.value);
     seekBar.current.max = audioPlay.current.duration;
   };
 
