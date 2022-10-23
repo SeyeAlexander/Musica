@@ -36,11 +36,21 @@ const AudioPlayer = () => {
   const [duration, setDuration] = useState(0);
   const currentIndex = songList.findIndex((song) => song.id === currentSong.id);
 
+  const playBackPercentage = duration
+    ? `${(audioPlay.current.currentTime / duration) * 100}%`
+    : '0%';
+  const trackStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${playBackPercentage}, #D4B544), 
+  color-stop(${playBackPercentage}, rgba(255, 255, 255, 0.6)))`;
+
+  const volumePercentage = `${vol}%`;
+  const volumeStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${volumePercentage}, #D4B544), 
+  color-stop(${volumePercentage}, rgba(255, 255, 255, 0.6)))`;
+
   useEffect(() => {
     setInterval(() => {
       setDuration(audioPlay.current.duration);
       setVal(audioPlay.current.currentTime);
-    }, 3000);
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -119,7 +129,7 @@ const AudioPlayer = () => {
       <audio ref={audioPlay} src={currentSong.song} />
 
       <Box position="fixed" bottom="0" bg="#1E1E1E" w="1410px" h="90px">
-        <Flex color="#EFEEE0" bg="#1E1E1E" opacity="0.99" ml="95px">
+        <Flex color="#EFEEE0" bg="#1E1E1E" opacity="0.9" ml="95px">
           <HStack w="5%">
             <Image src={albumArt} w="49px" borderRadius="14px"></Image>
           </HStack>
@@ -129,7 +139,7 @@ const AudioPlayer = () => {
             <Text fontSize="10px">James</Text>
           </VStack>
 
-          <VStack w="63%" py={4} px={6} spacing={4}>
+          <VStack w="63%" py={4} px={6} spacing={1}>
             <HStack spacing="53px">
               <Box onClick={shuffle}>
                 <Image src={ShuffleIcon} w="18px" />
@@ -160,24 +170,30 @@ const AudioPlayer = () => {
               </Box>
             </HStack>
 
-            <Box id="seek">
+            <Box>
               <input
                 type="range"
                 min={0}
                 max={`${duration}`}
                 value={val}
                 onChange={seek}
+                style={{ width: '700px', background: trackStyling }}
               />
             </Box>
           </VStack>
 
-          <VStack w="24%" py={5} px={2} mt="5" align="flexStart">
+          <VStack w="24%" py={5} px={2} mt="2" align="flexStart">
             <HStack>
               <Box onClick={mute}>
                 <Image src={VolIcon} w="18px" />
               </Box>
-              <Box id="vol">
-                <input type="range" value={vol} onChange={handleVolume} />
+              <Box>
+                <input
+                  type="range"
+                  value={vol}
+                  onChange={handleVolume}
+                  style={{ width: '200px', background: volumeStyling }}
+                />
               </Box>
             </HStack>
           </VStack>
