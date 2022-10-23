@@ -16,7 +16,6 @@ import { useEffect, useRef, useState } from 'react';
 
 const AudioPlayer = () => {
   const audioPlay = useRef();
-  const seekBar = useRef();
 
   const songList = [
     { id: '123', title: 'Bad To Me', artist: 'Wizkid', song: `${wizzy}` },
@@ -34,10 +33,12 @@ const AudioPlayer = () => {
   const [val, setVal] = useState(0);
   const [vol, setVol] = useState(60);
   const [isMute, setIsMute] = useState('yeah');
+  const [duration, setDuration] = useState(0);
   const currentIndex = songList.findIndex((song) => song.id === currentSong.id);
 
   useEffect(() => {
     setInterval(() => {
+      setDuration(audioPlay.current.duration);
       setVal(audioPlay.current.currentTime);
     }, 3000);
   }, []);
@@ -92,7 +93,6 @@ const AudioPlayer = () => {
   const seek = (e) => {
     audioPlay.current.currentTime = e.target.value;
     setVal(e.target.value);
-    seekBar.current.max = audioPlay.current.duration;
   };
 
   const loopPlay = () => {
@@ -161,7 +161,13 @@ const AudioPlayer = () => {
             </HStack>
 
             <Box id="seek">
-              <input type="range" ref={seekBar} value={val} onChange={seek} />
+              <input
+                type="range"
+                min={0}
+                max={`${duration}`}
+                value={val}
+                onChange={seek}
+              />
             </Box>
           </VStack>
 
