@@ -26,7 +26,7 @@ const AudioPlayer = () => {
     { id: '678', title: 'The Box', artist: 'Roddy Ricch', song: `${boxy}` },
   ];
 
-  const [currentSong, setCurrentSong] = useState(songList[1]);
+  const [currentSong, setCurrentSong] = useState(songList[0]);
   const [playBack, setPlayBack] = useState('play');
   const [loopPlayBack, setLoopPlayBack] = useState('yeah');
   const [shufflePlay, setShufflePlay] = useState('yeah');
@@ -170,7 +170,7 @@ const AudioPlayer = () => {
               </Box>
             </HStack>
 
-            <Box>
+            <Box id="seek">
               <input
                 type="range"
                 min={0}
@@ -187,7 +187,7 @@ const AudioPlayer = () => {
               <Box onClick={mute}>
                 <Image src={VolIcon} w="18px" />
               </Box>
-              <Box>
+              <Box id="volume">
                 <input
                   type="range"
                   value={vol}
