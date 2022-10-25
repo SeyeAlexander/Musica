@@ -9,9 +9,9 @@ import six from "../assets/Rectangle 14 (5).png";
 
 const MusicList = ({ reference }) => {
   return (
-    <Box ml='95px'>
-      <Box className='overflow' overflowY='hidden' w='100%' h='200px'>
-        <HStack spacing='7' pb='5' w='2200px' color='#EFEEE0'>
+    <Box ml={{ base: "0px", md: "95px" }}>
+      <Box className='overflow' overflowY='hidden' w='100%' h={{ base: "140px", md: "200px" }}>
+        <HStack spacing={{ base: "4", md: "7" }} pb='5' w='2200px' color='#EFEEE0'>
           <MusicItem url={one} title={"Life in a bubble"} />
           <MusicItem url={two} title={"Mountain"} />
           <MusicItem url={three} title={"Limits"} />

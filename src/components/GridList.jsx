@@ -7,17 +7,28 @@ import four from "../assets/four.png";
 
 const GridList = () => {
   return (
-    <VStack spacing='40px' ml='95px' align='flexStart' pt='30px'>
-      <HStack spacing={4}>
-        <Button colorScheme='yellow' borderRadius='20px'>
+    <VStack
+      w='full'
+      spacing='40px'
+      ml={{ base: "0px", md: "95px" }}
+      align='flexStart'
+      pt={{ base: "5px", md: "30px" }}
+    >
+      <HStack spacing={4} w='full' justify={{ base: "space-between", md: "start" }}>
+        <Button colorScheme='yellow' borderRadius='20px' w={{ base: "50%", md: "120px" }}>
           Collection
         </Button>
-        <Button variant='outline' colorScheme='facebook' borderRadius='20px' w='80px'>
+        <Button
+          variant='outline'
+          colorScheme='facebook'
+          borderRadius='20px'
+          w={{ base: "50%", md: "80px" }}
+        >
           likes
         </Button>
       </HStack>
 
-      <SimpleGrid columns={4} spacingX='70px' spacingY='40px'>
+      <SimpleGrid columns={{ base: "1", md: "5" }} spacingX='50px' spacingY='40px'>
         <GridMusic url={three} title={"Limits"} artist={"John Watts"} />
         <GridMusic url={two} title={"Cancelled"} artist={"Bryan"} />
         <GridMusic url={one} title={"Life in a bubble"} artist={"John"} />

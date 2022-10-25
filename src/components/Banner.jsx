@@ -1,9 +1,9 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text } from "@chakra-ui/react";
 
 const Banner = ({ banner }) => {
   return (
-    <Box ml="100px" my="4">
-      <Text fontSize="lg" fontWeight="700" color="#EFEEE0">
+    <Box ml={{ base: "0px", md: "100px" }} my={{ base: "2", md: "4" }}>
+      <Text fontSize={{ base: "18px", md: "lg" }} fontWeight='700' color='#EFEEE0'>
         {banner}
       </Text>
     </Box>

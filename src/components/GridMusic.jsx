@@ -6,8 +6,9 @@ const GridMusic = ({ url, title, artist }) => {
       bgImage={url}
       bgPosition='center'
       bgRepeat='no-repeat'
-      h='234px'
-      w='213px'
+      bgSize='cover'
+      h={{ base: "236px", md: "226px" }}
+      w={{ base: "full", md: "205px" }}
       borderRadius='20px'
       color='#EFEEE0'
       mt='10px'

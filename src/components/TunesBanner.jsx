@@ -4,21 +4,32 @@ import HeartIcon from "../assets/HeartP.svg";
 
 const TunesBanner = () => {
   return (
-    <Flex ml='95px' mt='30px'>
-      <Image src={Pic} w='270px' h='274px' />
+    <Flex
+      ml={{ base: "0px", md: "95px" }}
+      mt={{ base: "0px", md: "30px" }}
+      direction={{ base: "column", md: "row" }}
+    >
+      <Image src={Pic} w={{ base: "full", md: "270px" }} h={{ base: "360px", md: "274px" }} />
 
-      <VStack ml='30px' justify='flex-end' align='flexStart' w='700px' spacing='8px'>
-        <Text fontSize='24px' fontWeight='700'>
+      <VStack
+        ml={{ base: "0px", md: "30px" }}
+        justify='flex-end'
+        align='flexStart'
+        w={{ base: "full", md: "700px" }}
+        spacing='8px'
+      >
+        <Text fontSize='24px' fontWeight='700' pt={{ base: "4px", md: "0px" }}>
           Tomorrow's tunes
         </Text>
-        <Text fontSize='14px' fontWeight='300'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum qui, eius iste cum nihil ipsam error natus sapiente rem
+        <Text fontSize='14px' fontWeight='300' w={{ base: "full", md: "700px" }}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum qui, eius iste
+          cum nihil ipsam error natus sapiente rem
         </Text>
         <Text fontSize='12px' fontWeight='200'>
           64 songs ~ 16+ hrs
         </Text>
 
-        <HStack spacing={4} pt='30px' pb='10px'>
+        <HStack spacing={4} pt={{ base: "6px", md: "30px" }} pb={{ base: "0px", md: "10px" }}>
           <Button colorScheme='pink' variant='outline' borderRadius='20px' size='sm'>
             Play all
           </Button>

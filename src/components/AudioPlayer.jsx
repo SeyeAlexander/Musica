@@ -1,44 +1,44 @@
-import { Flex, Box, Image, Text, VStack, HStack } from '@chakra-ui/react';
-import albumArt from '../assets/Rectangle 26.png';
-import VolIcon from '../assets/volume-high.svg';
-import ShuffleIcon from '../assets/shuffle.svg';
-import PreviousIcon from '../assets/previous.svg';
-import PlayIcon from '../assets/VectorP.svg';
-import NextIcon from '../assets/next.svg';
-import RepeatIcon from '../assets/repeate-one.svg';
-import kulo from '../assets/musiclist/Ku-Lo-Sa.mp3';
-import wizzy from '../assets/musiclist/Bad-To-Me.mp3';
-import boxy from '../assets/musiclist/Box.mp3';
-import tierra from '../assets/musiclist/tierra.mp3';
-import kiss from '../assets/musiclist/Kiss Me.mp3';
-import lost from '../assets/musiclist/lost-souls.mp3';
-import { useEffect, useRef, useState } from 'react';
+import { Flex, Box, Image, Text, VStack, HStack } from "@chakra-ui/react";
+import albumArt from "../assets/Rectangle 26.png";
+import VolIcon from "../assets/volume-high.svg";
+import ShuffleIcon from "../assets/shuffle.svg";
+import PreviousIcon from "../assets/previous.svg";
+import PlayIcon from "../assets/VectorP.svg";
+import NextIcon from "../assets/next.svg";
+import RepeatIcon from "../assets/repeate-one.svg";
+import kulo from "../assets/musiclist/Ku-Lo-Sa.mp3";
+import wizzy from "../assets/musiclist/Bad-To-Me.mp3";
+import boxy from "../assets/musiclist/Box.mp3";
+import tierra from "../assets/musiclist/tierra.mp3";
+import kiss from "../assets/musiclist/Kiss Me.mp3";
+import lost from "../assets/musiclist/lost-souls.mp3";
+import { useEffect, useRef, useState } from "react";
 
 const AudioPlayer = () => {
   const audioPlay = useRef();
 
   const songList = [
-    { id: '123', title: 'Bad To Me', artist: 'Wizkid', song: `${wizzy}` },
-    { id: '234', title: 'Ku-Lo-Sa', artist: 'Oxlade', song: `${kulo}` },
-    { id: '345', title: 'Intro', artist: '21 savage', song: `${tierra}` },
-    { id: '456', title: 'Kiss Me More', artist: 'Doja', song: `${kiss}` },
-    { id: '567', title: 'Lost Souls', artist: 'Brent Faiyaz', song: `${lost}` },
-    { id: '678', title: 'The Box', artist: 'Roddy Ricch', song: `${boxy}` },
+    { id: "123", title: "Bad To Me", artist: "Wizkid", song: `${wizzy}` },
+    { id: "234", title: "Ku-Lo-Sa", artist: "Oxlade", song: `${kulo}` },
+    { id: "345", title: "Intro", artist: "21 savage", song: `${tierra}` },
+    { id: "456", title: "Kiss Me More", artist: "Doja", song: `${kiss}` },
+    { id: "567", title: "Lost Souls", artist: "Brent Faiyaz", song: `${lost}` },
+    { id: "678", title: "The Box", artist: "Roddy Ricch", song: `${boxy}` },
   ];
 
   const [currentSong, setCurrentSong] = useState(songList[0]);
-  const [playBack, setPlayBack] = useState('play');
-  const [loopPlayBack, setLoopPlayBack] = useState('yeah');
-  const [shufflePlay, setShufflePlay] = useState('yeah');
+  const [playBack, setPlayBack] = useState("play");
+  const [loopPlayBack, setLoopPlayBack] = useState("yeah");
+  const [shufflePlay, setShufflePlay] = useState("yeah");
   const [val, setVal] = useState(0);
   const [vol, setVol] = useState(60);
-  const [isMute, setIsMute] = useState('yeah');
+  const [isMute, setIsMute] = useState("yeah");
   const [duration, setDuration] = useState(0);
   const currentIndex = songList.findIndex((song) => song.id === currentSong.id);
 
   const playBackPercentage = duration
     ? `${(audioPlay.current.currentTime / duration) * 100}%`
-    : '0%';
+    : "0%";
   const trackStyling = `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${playBackPercentage}, #D4B544), 
   color-stop(${playBackPercentage}, rgba(255, 255, 255, 0.6)))`;
 
@@ -57,21 +57,19 @@ const AudioPlayer = () => {
     if (audioPlay.current.ended) {
       skipForward();
     } else {
-      playBack === 'pause'
-        ? audioPlay.current.play()
-        : audioPlay.current.pause();
+      playBack === "pause" ? audioPlay.current.play() : audioPlay.current.pause();
     }
   });
 
   const handlePlay = () => {
-    playBack === 'play' ? audioPlay.current.play() : audioPlay.current.pause();
-    playBack === 'pause' ? setPlayBack('play') : setPlayBack('pause');
+    playBack === "play" ? audioPlay.current.play() : audioPlay.current.pause();
+    playBack === "pause" ? setPlayBack("play") : setPlayBack("pause");
   };
 
   const skipForward = async () => {
     await setCurrentSong(songList[(currentIndex + 1) % songList.length]);
     audioPlay.current.play();
-    setPlayBack('pause');
+    setPlayBack("pause");
     setVal(0);
   };
 
@@ -80,7 +78,7 @@ const AudioPlayer = () => {
       ? await setCurrentSong(songList[songList.length - 1])
       : await setCurrentSong(songList[(currentIndex - 1) % songList.length]);
     audioPlay.current.play();
-    setPlayBack('pause');
+    setPlayBack("pause");
     setVal(0);
   };
 
@@ -94,9 +92,9 @@ const AudioPlayer = () => {
     };
 
     await setCurrentSong(shuffleList(songList));
-    shufflePlay === 'nah' ? setShufflePlay('yeah') : setShufflePlay('nah');
+    shufflePlay === "nah" ? setShufflePlay("yeah") : setShufflePlay("nah");
     audioPlay.current.play();
-    setPlayBack('pause');
+    setPlayBack("pause");
     setVal(0);
   };
 
@@ -106,10 +104,8 @@ const AudioPlayer = () => {
   };
 
   const loopPlay = () => {
-    loopPlayBack === 'yeah'
-      ? (audioPlay.current.loop = true)
-      : (audioPlay.current.loop = false);
-    loopPlayBack === 'nah' ? setLoopPlayBack('yeah') : setLoopPlayBack('nah');
+    loopPlayBack === "yeah" ? (audioPlay.current.loop = true) : (audioPlay.current.loop = false);
+    loopPlayBack === "nah" ? setLoopPlayBack("yeah") : setLoopPlayBack("nah");
   };
 
   const handleVolume = (e) => {
@@ -118,81 +114,79 @@ const AudioPlayer = () => {
   };
 
   const mute = () => {
-    isMute === 'yeah'
-      ? (audioPlay.current.muted = true)
-      : (audioPlay.current.muted = false);
-    isMute === 'nah' ? setIsMute('yeah') : setIsMute('nah');
+    isMute === "yeah" ? (audioPlay.current.muted = true) : (audioPlay.current.muted = false);
+    isMute === "nah" ? setIsMute("yeah") : setIsMute("nah");
   };
 
   return (
-    <Box>
+    <Box display={{ base: "none", md: "block" }}>
       <audio ref={audioPlay} src={currentSong.song} />
-
-      <Box position="fixed" bottom="0" bg="#1E1E1E" w="1410px" h="90px">
-        <Flex color="#EFEEE0" bg="#1E1E1E" opacity="0.9" ml="95px">
-          <HStack w="5%">
-            <Image src={albumArt} w="49px" borderRadius="14px"></Image>
+      {/* previous player width is 1410px */}
+      <Box position='fixed' bottom='0' bg='#1E1E1E' w='1330px' h='90px'>
+        <Flex color='#EFEEE0' bg='#1E1E1E' opacity='0.9' ml='95px'>
+          <HStack w='5%'>
+            <Image src={albumArt} w='49px' borderRadius='14px'></Image>
           </HStack>
 
-          <VStack w="8%" align="flexStart" spacing={0} mt={5} p={0}>
-            <Text fontSize="14px">Seasons in</Text>
-            <Text fontSize="10px">James</Text>
+          <VStack w='8%' align='flexStart' spacing={0} mt={5} p={0}>
+            <Text fontSize='14px'>Seasons in</Text>
+            <Text fontSize='10px'>James</Text>
           </VStack>
 
-          <VStack w="63%" py={4} px={6} spacing={1}>
-            <HStack spacing="53px">
+          <VStack w='63%' py={4} px={6} spacing={1}>
+            <HStack spacing='53px'>
               <Box onClick={shuffle}>
-                <Image src={ShuffleIcon} w="18px" />
+                <Image src={ShuffleIcon} w='18px' />
               </Box>
 
               <Box onClick={skipBack}>
-                <Image src={PreviousIcon} w="18px" />
+                <Image src={PreviousIcon} w='18px' />
               </Box>
 
               <Box onClick={handlePlay}>
                 <Image
                   src={PlayIcon}
-                  borderRadius="50%"
-                  w="100%"
-                  h="100%"
-                  bg="yellow.400"
-                  p="3"
-                  color="#EFEEE0"
+                  borderRadius='50%'
+                  w='100%'
+                  h='100%'
+                  bg='yellow.400'
+                  p='3'
+                  color='#EFEEE0'
                 />
               </Box>
 
               <Box onClick={skipForward}>
-                <Image src={NextIcon} w="18px" />
+                <Image src={NextIcon} w='18px' />
               </Box>
 
               <Box onClick={loopPlay}>
-                <Image src={RepeatIcon} w="18px" />
+                <Image src={RepeatIcon} w='18px' />
               </Box>
             </HStack>
 
-            <Box id="seek">
+            <Box id='seek'>
               <input
-                type="range"
+                type='range'
                 min={0}
                 max={`${duration}`}
                 value={val}
                 onChange={seek}
-                style={{ width: '700px', background: trackStyling }}
+                style={{ width: "700px", background: trackStyling }}
               />
             </Box>
           </VStack>
 
-          <VStack w="24%" py={5} px={2} mt="2" align="flexStart">
+          <VStack w='24%' py={5} px={2} mt='2' align='flexStart'>
             <HStack>
               <Box onClick={mute}>
-                <Image src={VolIcon} w="18px" />
+                <Image src={VolIcon} w='18px' />
               </Box>
-              <Box id="volume">
+              <Box id='volume'>
                 <input
-                  type="range"
+                  type='range'
                   value={vol}
                   onChange={handleVolume}
-                  style={{ width: '200px', background: volumeStyling }}
+                  style={{ width: "200px", height: "6px", background: volumeStyling }}
                 />
               </Box>
             </HStack>
