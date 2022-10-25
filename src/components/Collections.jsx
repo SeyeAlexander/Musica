@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import GridList from "./GridList";
 import SideBar from "./SideBar";
 
-const Collection = () => {
+const Collections = () => {
   return (
     <Box>
       <Box
@@ -20,4 +20,4 @@ const Collection = () => {
   );
 };
 
-export default Collection;
+export default Collections;
