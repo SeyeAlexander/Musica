@@ -12,7 +12,7 @@ const GridList = () => {
       spacing='40px'
       ml={{ base: "0px", md: "95px" }}
       align='flexStart'
-      pt={{ base: "5px", md: "30px" }}
+      pt={{ base: "5px", md: "15px" }}
     >
       <HStack spacing={4} w='full' justify={{ base: "space-between", md: "start" }}>
         <Button colorScheme='yellow' borderRadius='20px' w={{ base: "50%", md: "120px" }}>

@@ -6,7 +6,7 @@ const TunesBanner = () => {
   return (
     <Flex
       ml={{ base: "0px", md: "95px" }}
-      mt={{ base: "0px", md: "30px" }}
+      mt={{ base: "0px", md: "15px" }}
       direction={{ base: "column", md: "row" }}
     >
       <Image src={Pic} w={{ base: "full", md: "270px" }} h={{ base: "360px", md: "274px" }} />

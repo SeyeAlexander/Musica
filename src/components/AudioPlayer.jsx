@@ -186,7 +186,7 @@ const AudioPlayer = () => {
                   type='range'
                   value={vol}
                   onChange={handleVolume}
-                  style={{ width: "200px", height: "6px", background: volumeStyling }}
+                  style={{ width: "160px", height: "4px", background: volumeStyling }}
                 />
               </Box>
             </HStack>

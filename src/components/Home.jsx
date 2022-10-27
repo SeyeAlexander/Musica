@@ -7,7 +7,7 @@ import Banner from "./Banner";
 const Home = () => {
   return (
     <Box>
-      <Box ml={{ base: "0", md: "2" }} pt={{ base: "5", md: "80px" }} mb='6' color='#EFEEE0'>
+      <Box ml={{ base: "0", md: "2" }} pt={{ base: "5", md: "8px" }} mb='6' color='#EFEEE0'>
         <Flex>
           <SideBar />
           <HeroSection />

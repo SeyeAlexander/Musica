@@ -12,6 +12,7 @@ const HeroSection = () => {
       w='full'
       gap={6}
       ml={{ base: "0px", md: "95px" }}
+      mt={{ base: "0px", md: "15px" }}
       direction={{ base: "column", md: "row" }}
     >
       <Flex

@@ -17,14 +17,14 @@ const NavBar = () => {
     <Box
       py='4'
       ml='6'
-      position='fixed'
+      // position='fixed'
       w='100%'
-      top='0'
+      // top='0'
       bg='#1E1E1E'
       h='60px'
       opacity='0.99'
-      zIndex='1'
-      display={{ base: "none", md: "block" }}
+      // zIndex='1'
+      // display={{ base: "none", md: "block" }}
     >
       <HStack spacing='5vw'>
         <Link to='/'>

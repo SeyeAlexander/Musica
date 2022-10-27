@@ -7,7 +7,7 @@ const Collections = () => {
     <Box>
       <Box
         ml={{ base: "0", md: "2" }}
-        pt={{ base: "5", md: "80px" }}
+        pt={{ base: "5", md: "8px" }}
         mb={{ base: "2", md: "6" }}
         color='#EFEEE0'
       >
