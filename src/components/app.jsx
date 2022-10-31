@@ -62,8 +62,12 @@ const App = () => {
 
     getPlaylists();
     getNewReleases();
-    handleTermSubmit("asake");
   }, [token]);
+
+  useEffect(() => {
+    handleTermSubmit("asake");
+    // eslint-disable-next-line
+  }, []);
 
   const handleTermSubmit = async (term) => {
     const res = await spotify.get("/search", {
