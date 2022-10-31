@@ -1,7 +1,7 @@
 import { Box, Container } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import spotify from "../api/spotify";
+import spotify from "../api/Spotify";
 import Home from "./Home";
 import Playlists from "./Playlists";
 import Collections from "./Collections";
