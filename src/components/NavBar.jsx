@@ -16,7 +16,7 @@ import { useState } from "react";
 
 const NavBar = ({ onSearchSubmit }) => {
   const CLIENT_ID = "ffd3c6dfc19d4932ac951a7bfd6074a3";
-  const REDIRECT_URI = "http://localhost:3000/";
+  const REDIRECT_URI = "https://master--aesthetic-centaur-30da84.netlify.app/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
