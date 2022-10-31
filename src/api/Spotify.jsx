@@ -1,9 +1,5 @@
-const Spotify = () => {
-  return (
-    <div>
-      <div>get</div>
-    </div>
-  );
-};
+import axios from "axios";
 
-export default Spotify;
+export default axios.create({
+  baseURL: "https://api.spotify.com/v1",
+});

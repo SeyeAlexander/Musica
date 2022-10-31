@@ -5,13 +5,8 @@ import SideBar from "./SideBar";
 const Collections = () => {
   return (
     <Box>
-      <Box
-        ml={{ base: "0", md: "2" }}
-        pt={{ base: "5", md: "8px" }}
-        mb={{ base: "2", md: "6" }}
-        color='#EFEEE0'
-      >
-        <Flex pb={{ base: "20px", md: "100px" }}>
+      <Box ml={{ base: "0", md: "2" }} pt='80px' mb={{ base: "2", md: "6" }} color='#EFEEE0'>
+        <Flex pb={{ base: "90px", md: "100px" }}>
           <SideBar />
           <GridList />
         </Flex>

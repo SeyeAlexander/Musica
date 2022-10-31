@@ -1,6 +1,7 @@
 import { Text, Flex, Box, HStack, Image, VStack, Button } from "@chakra-ui/react";
-import Pic from "../assets/Lead-image.png";
+// import Pic from "../assets/Lead-image.png";
 import HeartIcon from "../assets/HeartP.svg";
+import songList from "../data/songList";
 
 const TunesBanner = () => {
   return (
@@ -9,7 +10,12 @@ const TunesBanner = () => {
       mt={{ base: "0px", md: "15px" }}
       direction={{ base: "column", md: "row" }}
     >
-      <Image src={Pic} w={{ base: "full", md: "270px" }} h={{ base: "360px", md: "274px" }} />
+      <Image
+        src={songList[1].art}
+        w={{ base: "full", md: "270px" }}
+        h={{ base: "360px", md: "274px" }}
+        borderRadius='20px'
+      />
 
       <VStack
         ml={{ base: "0px", md: "30px" }}

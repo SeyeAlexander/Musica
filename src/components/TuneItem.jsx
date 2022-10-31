@@ -2,7 +2,7 @@ import { HStack, Box, Flex, Text, Image } from "@chakra-ui/react";
 import heartIcon from "../assets/Heart.png";
 import dots from "../assets/more-vertical.png";
 
-const TuneItem = ({ img, title, type, time }) => {
+const TuneItem = ({ song }) => {
   return (
     <HStack
       w='full'
@@ -12,9 +12,16 @@ const TuneItem = ({ img, title, type, time }) => {
       py='3'
       pr={{ base: "0px", md: "50px" }}
       color='#EFEEE0'
+      key={song.id}
     >
-      <HStack w='10%'>
-        <Image src={img} w='39px' mr='2' />
+      <HStack w='14%'>
+        <Image
+          src={song.art}
+          w={{ base: "42px", md: "40px" }}
+          h={{ base: "36px", md: "39px" }}
+          borderRadius='5px'
+          mr='2'
+        />
         <Image src={heartIcon} h='16px' display={{ base: "none", md: "inline" }} />
       </HStack>
 
@@ -25,11 +32,11 @@ const TuneItem = ({ img, title, type, time }) => {
           direction={{ base: "column", md: "row" }}
         >
           <Box w='70%'>
-            <Text fontSize='14px'>{title}</Text>
+            <Text fontSize='14px'>{song.title}</Text>
           </Box>
 
           <Flex w='30%' justify={{ base: "start", md: "center" }}>
-            <Text fontSize={{ base: "12px", md: "14px" }}>{type}</Text>
+            <Text fontSize={{ base: "12px", md: "14px" }}>{song.albumType}</Text>
           </Flex>
         </Flex>
 
@@ -39,7 +46,7 @@ const TuneItem = ({ img, title, type, time }) => {
           direction={{ base: "column-reverse", md: "row" }}
         >
           <Box w='70%' pl={{ base: "0", md: "120px" }}>
-            <Text fontSize='14px'>{time}</Text>
+            <Text fontSize='14px'>2:30</Text>
           </Box>
 
           <Box w='30%'>

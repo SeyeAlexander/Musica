@@ -1,30 +1,17 @@
 import { Flex, Box, Image, Text, VStack, HStack } from "@chakra-ui/react";
-import albumArt from "../assets/Rectangle 26.png";
 import VolIcon from "../assets/volume-high.svg";
 import ShuffleIcon from "../assets/shuffle.svg";
 import PreviousIcon from "../assets/previous.svg";
 import PlayIcon from "../assets/VectorP.svg";
+import PauseIcon from "../assets/pause.png";
 import NextIcon from "../assets/next.svg";
 import RepeatIcon from "../assets/repeate-one.svg";
-import kulo from "../assets/musiclist/Ku-Lo-Sa.mp3";
-import wizzy from "../assets/musiclist/Bad-To-Me.mp3";
-import boxy from "../assets/musiclist/Box.mp3";
-import tierra from "../assets/musiclist/tierra.mp3";
-import kiss from "../assets/musiclist/Kiss Me.mp3";
-import lost from "../assets/musiclist/lost-souls.mp3";
+import songList from "../data/songList";
+import heartIcon from "../assets/Heart.png";
 import { useEffect, useRef, useState } from "react";
 
-const AudioPlayer = () => {
+const AudioPlayer = ({ nowPlaying }) => {
   const audioPlay = useRef();
-
-  const songList = [
-    { id: "123", title: "Bad To Me", artist: "Wizkid", song: `${wizzy}` },
-    { id: "234", title: "Ku-Lo-Sa", artist: "Oxlade", song: `${kulo}` },
-    { id: "345", title: "Intro", artist: "21 savage", song: `${tierra}` },
-    { id: "456", title: "Kiss Me More", artist: "Doja", song: `${kiss}` },
-    { id: "567", title: "Lost Souls", artist: "Brent Faiyaz", song: `${lost}` },
-    { id: "678", title: "The Box", artist: "Roddy Ricch", song: `${boxy}` },
-  ];
 
   const [currentSong, setCurrentSong] = useState(songList[0]);
   const [playBack, setPlayBack] = useState("play");
@@ -34,6 +21,7 @@ const AudioPlayer = () => {
   const [vol, setVol] = useState(60);
   const [isMute, setIsMute] = useState("yeah");
   const [duration, setDuration] = useState(0);
+  const [icon, setIcon] = useState(PlayIcon);
   const currentIndex = songList.findIndex((song) => song.id === currentSong.id);
 
   const playBackPercentage = duration
@@ -64,12 +52,14 @@ const AudioPlayer = () => {
   const handlePlay = () => {
     playBack === "play" ? audioPlay.current.play() : audioPlay.current.pause();
     playBack === "pause" ? setPlayBack("play") : setPlayBack("pause");
+    playBack === "pause" ? setIcon(PlayIcon) : setIcon(PauseIcon);
   };
 
   const skipForward = async () => {
     await setCurrentSong(songList[(currentIndex + 1) % songList.length]);
     audioPlay.current.play();
     setPlayBack("pause");
+    setIcon(PauseIcon);
     setVal(0);
   };
 
@@ -79,6 +69,7 @@ const AudioPlayer = () => {
       : await setCurrentSong(songList[(currentIndex - 1) % songList.length]);
     audioPlay.current.play();
     setPlayBack("pause");
+    setIcon(PauseIcon);
     setVal(0);
   };
 
@@ -119,47 +110,105 @@ const AudioPlayer = () => {
   };
 
   return (
-    <Box display={{ base: "none", md: "block" }}>
-      <audio ref={audioPlay} src={currentSong.song} />
-      {/* previous player width is 1410px */}
-      <Box position='fixed' bottom='0' bg='#1E1E1E' w='1330px' h='90px'>
-        <Flex color='#EFEEE0' bg='#1E1E1E' opacity='0.9' ml='95px'>
+    <Box>
+      {/* mobile player */}
+      <Box
+        display={{ base: "block", md: "none" }}
+        position='fixed'
+        bottom='0'
+        bg='#1E1E1E'
+        w='92%'
+        h='80px'
+        py='2'
+      >
+        <audio ref={audioPlay} src={currentSong.song} />
+        {/* {!nowPlaying && <audio ref={audioPlay} src={currentSong.song} />}
+        {nowPlaying && <audio ref={audioPlay} src={nowPlaying} />} */}
+
+        <Flex color='#EFEEE0' align='center'>
+          <HStack w='17%'>
+            <Image src={currentSong.art} w='50px' h='50px' borderRadius='5px'></Image>
+          </HStack>
+
+          <VStack w='61%' align='flexStart' spacing={0}>
+            <Text fontSize='14px'>{currentSong.title}</Text>
+            <Text fontSize='12px' color='gray.300'>
+              {currentSong.artist}
+            </Text>
+          </VStack>
+
+          <HStack w='10%'>
+            <Image src={heartIcon} h='20px' />
+          </HStack>
+
+          <Box w='12%' pl='6px' onClick={handlePlay}>
+            <Image src={icon} w='23px' />
+          </Box>
+        </Flex>
+
+        <Box id='volume'>
+          <input
+            type='range'
+            value={val}
+            style={{ width: "92vw", height: "3px", background: trackStyling }}
+          />
+        </Box>
+      </Box>
+
+      {/* Desktop player */}
+      <Box
+        display={{ base: "none", md: "block" }}
+        position='fixed'
+        bottom='0'
+        bg='#1E1E1E'
+        /* previous player width is 1410px/1330  */
+        // w='1250px' test on bigger screens if this doesnt break
+        w='100%'
+        h='90px'
+        opacity='0.99'
+      >
+        <audio ref={audioPlay} src={currentSong.song} />
+
+        {/* {!nowPlaying && <audio ref={audioPlay} src={currentSong.song} />}
+        {nowPlaying && <audio ref={audioPlay} src={nowPlaying} />} */}
+
+        <Flex color='#EFEEE0' ml='95px' h='full'>
           <HStack w='5%'>
-            <Image src={albumArt} w='49px' borderRadius='14px'></Image>
+            <Image src={currentSong.art} w='49px' h='49px' borderRadius='14px' />
           </HStack>
 
           <VStack w='8%' align='flexStart' spacing={0} mt={5} p={0}>
-            <Text fontSize='14px'>Seasons in</Text>
-            <Text fontSize='10px'>James</Text>
+            <Text fontSize='14px'>{currentSong.title}</Text>
+            <Text fontSize='10px'>{currentSong.artist}</Text>
           </VStack>
 
           <VStack w='63%' py={4} px={6} spacing={1}>
             <HStack spacing='53px'>
-              <Box onClick={shuffle}>
+              <Box onClick={shuffle} boxShadow='xs' className='zoomIcon'>
                 <Image src={ShuffleIcon} w='18px' />
               </Box>
 
-              <Box onClick={skipBack}>
+              <Box onClick={skipBack} className='zoomIcon'>
                 <Image src={PreviousIcon} w='18px' />
               </Box>
 
-              <Box onClick={handlePlay}>
+              <Box onClick={handlePlay} className='zoomIcon'>
                 <Image
-                  src={PlayIcon}
+                  src={icon}
                   borderRadius='50%'
-                  w='100%'
-                  h='100%'
+                  w='38px'
+                  h='38px'
                   bg='yellow.400'
                   p='3'
                   color='#EFEEE0'
                 />
               </Box>
 
-              <Box onClick={skipForward}>
+              <Box onClick={skipForward} className='zoomIcon'>
                 <Image src={NextIcon} w='18px' />
               </Box>
 
-              <Box onClick={loopPlay}>
+              <Box onClick={loopPlay} className='zoomIcon'>
                 <Image src={RepeatIcon} w='18px' />
               </Box>
             </HStack>
@@ -178,7 +227,7 @@ const AudioPlayer = () => {
 
           <VStack w='24%' py={5} px={2} mt='2' align='flexStart'>
             <HStack>
-              <Box onClick={mute}>
+              <Box onClick={mute} pt='2'>
                 <Image src={VolIcon} w='18px' />
               </Box>
               <Box id='volume'>

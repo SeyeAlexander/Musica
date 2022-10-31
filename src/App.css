@@ -25,7 +25,7 @@ html {
   width: 100%;
   height: 100%;
   opacity: 0.07;
-  background-image: url(./assets/Lead-image.png);
+  background-image: url(./assets/musiclist/RemaArt.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -33,6 +33,22 @@ html {
 
 .bg-content {
   position: relative;
+}
+
+.zoom:hover {
+  transform: scale(1.04);
+  transition: all 0.5s ease;
+  padding-left: 4px;
+}
+
+.zoomIcon:hover {
+  transform: scale(1.2);
+  transition: all 0.5s ease;
+}
+
+.hover01:hover {
+  transform: scale(1.1);
+  transition: 1s ease;
 }
 
 input[type="range"] {

@@ -1,12 +1,8 @@
 import { Box, Flex, VStack, Image, Text, HStack } from "@chakra-ui/react";
-import one from "../assets/Rectangle 17.svg";
-import two from "../assets/Rectangle 17 (1).svg";
-import three from "../assets/Rectangle 17 (2).svg";
 import HeartIcon from "../assets/Heart.svg";
-import Picture from "../assets/Pexels Photo by Eric Esma.png";
 import Vector from "../assets/Vector.png";
 
-const HeroSection = () => {
+const HeroSection = ({ playlists }) => {
   return (
     <Flex
       w='full'
@@ -36,12 +32,21 @@ const HeroSection = () => {
           </Text>
 
           <VStack spacing='2' align='flexStart' w={{ base: "210px", md: "290px" }}>
-            <Text fontSize={{ base: "15px", md: "35px" }} lineHeight='42px' fontWeight='700'>
-              R & B Hits
+            <Text
+              fontSize={{ base: "15px", md: "35px" }}
+              lineHeight='42px'
+              fontWeight='700'
+              w={{ base: "full", md: "50%" }}
+            >
+              {playlists[0].name}
             </Text>
-            <Text fontSize='14px' lineHeight='16.8px' fontWeight='400'>
-              All mine, Lie again, Pretty call me everyday, <br /> Out of time, No love, Bad habit{" "}
-              <br /> and so much more
+            <Text
+              fontSize='14px'
+              lineHeight='16.8px'
+              fontWeight='400'
+              w={{ base: "full", md: "50%" }}
+            >
+              {playlists[0].description}
             </Text>
           </VStack>
 
@@ -54,7 +59,7 @@ const HeroSection = () => {
         </VStack>
 
         <VStack w='50%' display={{ base: "none", md: "flex" }}>
-          <Image src={Picture} w='381px' />
+          <Image src={playlists[0].images[0].url} w='381px' h='full' borderRightRadius='30px' />
         </VStack>
       </Flex>
 
@@ -65,92 +70,49 @@ const HeroSection = () => {
 
         <Box className='overflow' overflowY={{ base: "auto", md: "hidden" }} w='100%'>
           <Flex gap={2} direction={{ base: "row", md: "column" }} w={{ base: "900px", md: "full" }}>
-            <Flex
-              bg='#1A1E1F'
-              borderRadius='20px'
-              w={{ base: "xs", md: "md" }}
-              h={{ base: "154px", md: "100px" }}
-              p='2'
-              justify='space-between'
-            >
-              <Flex gap={2} direction={{ base: "column", md: "row" }}>
-                <Image src={one} w={{ base: "80px", md: "63px" }} />
+            {playlists &&
+              playlists.map((playlist) => (
+                <Flex
+                  key={playlist.id}
+                  bg='#1A1E1F'
+                  borderRadius='20px'
+                  w={{ base: "xs", md: "md" }}
+                  h={{ base: "154px", md: "80px" }}
+                  p='2'
+                  justify='space-between'
+                >
+                  <Flex
+                    gap={2}
+                    direction={{ base: "column", md: "row" }}
+                    align={{ base: "none", md: "center" }}
+                  >
+                    <Image
+                      src={playlist.images[0].url}
+                      w={{ base: "80px", md: "63px" }}
+                      h={{ base: "80px", md: "63px" }}
+                      borderRadius={{ base: "5px", md: "10px" }}
+                    />
 
-                <VStack pt={{ base: "0", md: "3" }} spacing={0} align='flexStart'>
-                  <Text fontSize={{ base: "14px", md: "sm" }} fontWeight='medium'>
-                    Golden age of 80
-                  </Text>
-                  <Text fontSize={{ base: "12px", md: "xs" }}>Sean Swadder</Text>
-                  <Text fontSize={{ base: "12px", md: "xs" }} fontWeight='light'>
-                    2:34:45
-                  </Text>
-                </VStack>
-              </Flex>
+                    <VStack pt={{ base: "0", md: "3px" }} spacing={0} align='flexStart'>
+                      <Text fontSize={{ base: "14px", md: "sm" }} fontWeight='medium'>
+                        {playlist.name}
+                      </Text>
+                      <Text fontSize={{ base: "10px", md: "12px" }}>
+                        {playlist.owner.display_name}
+                      </Text>
+                      <Text fontSize={{ base: "10px", md: "10px" }} fontWeight='light'>
+                        {playlist.tracks.total} Tracks
+                      </Text>
+                    </VStack>
+                  </Flex>
 
-              <VStack pt={{ base: 0, md: "6" }}>
-                <Box borderRadius='50%' color='yellow.900' border='1px' p='5px'>
-                  <Image src={HeartIcon} w='14px' />
-                </Box>
-              </VStack>
-            </Flex>
-
-            <Flex
-              bg='#1A1E1F'
-              borderRadius='20px'
-              w={{ base: "xs", md: "md" }}
-              h={{ base: "154px", md: "100px" }}
-              p='2'
-              justify='space-between'
-            >
-              <Flex gap={2} direction={{ base: "column", md: "row" }}>
-                <Image src={two} w={{ base: "80px", md: "63px" }} />
-
-                <VStack pt={{ base: "0", md: "3" }} spacing={0} align='flexStart'>
-                  <Text fontSize={{ base: "14px", md: "sm" }} fontWeight='medium'>
-                    Reggae "n" Blues
-                  </Text>
-                  <Text fontSize={{ base: "12px", md: "xs" }}>Dj Yk Mule</Text>
-                  <Text fontSize={{ base: "12px", md: "xs" }} fontWeight='light'>
-                    1:02:42
-                  </Text>
-                </VStack>
-              </Flex>
-
-              <VStack pt={{ base: 0, md: "6" }}>
-                <Box borderRadius='50%' color='yellow.900' border='1px' p='5px'>
-                  <Image src={HeartIcon} w='14px' />
-                </Box>
-              </VStack>
-            </Flex>
-
-            <Flex
-              bg='#1A1E1F'
-              borderRadius='20px'
-              w={{ base: "xs", md: "md" }}
-              h={{ base: "154px", md: "100px" }}
-              p='2'
-              justify='space-between'
-            >
-              <Flex gap={2} direction={{ base: "column", md: "row" }}>
-                <Image src={three} w={{ base: "80px", md: "63px" }} />
-
-                <VStack pt={{ base: "0", md: "3" }} spacing={0} align='flexStart'>
-                  <Text fontSize={{ base: "14px", md: "sm" }} fontWeight='medium'>
-                    Tomorrow's tunes
-                  </Text>
-                  <Text fontSize={{ base: "12px", md: "xs" }}>Obi Datti</Text>
-                  <Text fontSize={{ base: "12px", md: "xs" }} fontWeight='light'>
-                    2:01:25
-                  </Text>
-                </VStack>
-              </Flex>
-
-              <VStack pt={{ base: 0, md: "6" }}>
-                <Box borderRadius='50%' color='yellow.900' border='1px' p='5px'>
-                  <Image src={HeartIcon} w='14px' />
-                </Box>
-              </VStack>
-            </Flex>
+                  <VStack pt={{ base: 0, md: "6" }}>
+                    <Box borderRadius='50%' color='yellow.900' border='1px' p='5px'>
+                      <Image src={HeartIcon} w='14px' />
+                    </Box>
+                  </VStack>
+                </Flex>
+              ))}
           </Flex>
         </Box>
       </VStack>

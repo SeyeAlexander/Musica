@@ -7,19 +7,14 @@ const Playlists = () => {
   return (
     <Box className='bg'>
       <Box className='bg-content'>
-        <Box
-          ml={{ base: "0", md: "2" }}
-          pt={{ base: "5", md: "8px" }}
-          mb={{ base: "2", md: "6" }}
-          color='#EFEEE0'
-        >
+        <Box ml={{ base: "0", md: "2" }} pt='80px' mb={{ base: "2", md: "6" }} color='#EFEEE0'>
           <Flex pb='50px'>
             <SideBar />
             <TunesBanner />
           </Flex>
         </Box>
 
-        <Box pb={{ base: "20px", md: "120px" }}>
+        <Box pb={{ base: "90px", md: "120px" }}>
           <TunesList />
         </Box>
       </Box>

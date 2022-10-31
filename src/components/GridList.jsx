@@ -28,7 +28,7 @@ const GridList = () => {
         </Button>
       </HStack>
 
-      <SimpleGrid columns={{ base: "1", md: "5" }} spacingX='50px' spacingY='40px'>
+      <SimpleGrid columns={{ base: "1", md: "5" }} spacingX='3vw' spacingY='5vh'>
         <GridMusic url={three} title={"Limits"} artist={"John Watts"} />
         <GridMusic url={two} title={"Cancelled"} artist={"Bryan"} />
         <GridMusic url={one} title={"Life in a bubble"} artist={"John"} />
