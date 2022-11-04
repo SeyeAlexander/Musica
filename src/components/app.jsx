@@ -15,6 +15,12 @@ const App = () => {
   const [songs, setSongs] = useState([]);
   const [nowPlaying, setNowPlaying] = useState("");
 
+  const CLIENT_ID = "ffd3c6dfc19d4932ac951a7bfd6074a3";
+  // const REDIRECT_URI = "https://master--aesthetic-centaur-30da84.netlify.app/";
+  const REDIRECT_URI = "http://localhost:3000/";
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+  const RESPONSE_TYPE = "token";
+
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
@@ -64,10 +70,15 @@ const App = () => {
     getNewReleases();
   }, [token]);
 
-  useEffect(() => {
-    handleTermSubmit("asake");
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   handleTermSubmit("asake");
+  // }, []);
+
+  const handleSpotifyConnect = () => {
+    setToken("");
+    window.localStorage.removeItem("token");
+    window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+  };
 
   const handleTermSubmit = async (term) => {
     const res = await spotify.get("/search", {
@@ -98,7 +109,7 @@ const App = () => {
     <Router>
       <Box bg='#1E1E1E'>
         <Container maxW='8xl' mx='auto' overflowX='hidden'>
-          <NavBar onSearchSubmit={handleTermSubmit} />
+          <NavBar onSearchSubmit={handleTermSubmit} onSpotifyConnect={handleSpotifyConnect} />
 
           <Routes>
             <Route

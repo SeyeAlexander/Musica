@@ -163,7 +163,7 @@ const AudioPlayer = ({ nowPlaying }) => {
         bg='#1E1E1E'
         /* previous player width is 1410px/1330  */
         // w='1250px' test on bigger screens if this doesnt break
-        w='100%'
+        w='1430px'
         h='90px'
         opacity='0.99'
       >
@@ -225,7 +225,7 @@ const AudioPlayer = ({ nowPlaying }) => {
             </Box>
           </VStack>
 
-          <VStack w='24%' py={5} px={2} mt='2' align='flexStart'>
+          <VStack w='24%' py={5} mt='2' align='flexStart'>
             <HStack>
               <Box onClick={mute} pt='2'>
                 <Image src={VolIcon} w='18px' />
@@ -235,7 +235,7 @@ const AudioPlayer = ({ nowPlaying }) => {
                   type='range'
                   value={vol}
                   onChange={handleVolume}
-                  style={{ width: "160px", height: "4px", background: volumeStyling }}
+                  style={{ width: "100px", height: "4px", background: volumeStyling }}
                 />
               </Box>
             </HStack>
