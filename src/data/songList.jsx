@@ -20,7 +20,8 @@ import bujuEpArt from "../assets/musiclist/BNXNEpArt.webp";
 import victonyArt from "../assets/musiclist/VictonyArt.webp";
 import pheelzArt from "../assets/musiclist/PheelzArt.webp";
 
-// had to specify local dataset in the format of results returned by the spotify api,
+// had to specify local dataset in this format,
+// this is the format in which results are returned by the spotify api,
 // to give a level of uniformity and avoid duplicate function lines in the audioplayer component
 const songList = [
   {

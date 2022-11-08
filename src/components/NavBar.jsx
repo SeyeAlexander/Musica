@@ -33,7 +33,7 @@ const NavBar = ({ onSearchSubmit, onSpotifyConnect }) => {
       ml={{ base: "0", md: "6" }}
       position='fixed'
       top='0'
-      w='1220px'
+      w={{ base: "93%", md: "93%" }}
       bg='#1E1E1E'
       h='60px'
       opacity='0.99'
@@ -46,7 +46,7 @@ const NavBar = ({ onSearchSubmit, onSpotifyConnect }) => {
               <Image src={Logo} w='34px' />
             </Link>
 
-            <Box w={{ base: "full", md: "25vw" }} pl='50px'>
+            <Box w={{ base: "full", md: "25vw" }} pl={{ base: "10px", md: "50px" }}>
               <form onSubmit={handleSubmit}>
                 <FormControl color='white'>
                   <InputGroup size='sm'>
