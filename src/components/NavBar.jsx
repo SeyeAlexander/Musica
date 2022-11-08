@@ -16,12 +16,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const NavBar = ({ onSearchSubmit, onSpotifyConnect }) => {
-  // const CLIENT_ID = "ffd3c6dfc19d4932ac951a7bfd6074a3";
-  // // const REDIRECT_URI = "https://master--aesthetic-centaur-30da84.netlify.app/";
-  // const REDIRECT_URI = "http://localhost:3000/";
-  // const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-  // const RESPONSE_TYPE = "token";
-
   const [term, setTerm] = useState("");
 
   const connect = () => {
@@ -52,7 +46,7 @@ const NavBar = ({ onSearchSubmit, onSpotifyConnect }) => {
               <Image src={Logo} w='34px' />
             </Link>
 
-            <Box w='25vw' pl='70px'>
+            <Box w={{ base: "full", md: "25vw" }} pl='50px'>
               <form onSubmit={handleSubmit}>
                 <FormControl color='white'>
                   <InputGroup size='sm'>
@@ -84,13 +78,6 @@ const NavBar = ({ onSearchSubmit, onSpotifyConnect }) => {
             <Button colorScheme='green' borderRadius='20px' size='sm' onClick={connect}>
               Connect Spotify
             </Button>
-            {/* <a
-              href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-            >
-              <Button colorScheme='green' borderRadius='20px' size='sm'>
-                Connect Spotify
-              </Button>
-            </a> */}
           </HStack>
         </Flex>
       </HStack>

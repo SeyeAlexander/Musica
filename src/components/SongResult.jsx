@@ -1,8 +1,12 @@
 import { Image, Text, VStack } from "@chakra-ui/react";
 
-const SongResult = ({ song }) => {
+const SongResult = ({ song, onSongPick }) => {
+  const handleSelect = () => {
+    onSongPick(song);
+  };
+
   return (
-    <VStack className='zoom' key={song.id} spacing={2} align='flexStart' pt={2}>
+    <VStack className='zoom' spacing={2} align='flexStart' pt={2} onClick={handleSelect}>
       <Image
         src={song.album.images[0].url}
         w={{ base: "100px", md: "150px" }}

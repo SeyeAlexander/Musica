@@ -16,7 +16,7 @@ const TuneItem = ({ song }) => {
     >
       <HStack w='14%'>
         <Image
-          src={song.art}
+          src={song.album.images[0].url}
           w={{ base: "42px", md: "40px" }}
           h={{ base: "36px", md: "39px" }}
           borderRadius='5px'
@@ -32,11 +32,11 @@ const TuneItem = ({ song }) => {
           direction={{ base: "column", md: "row" }}
         >
           <Box w='70%'>
-            <Text fontSize='14px'>{song.title}</Text>
+            <Text fontSize='14px'>{song.name}</Text>
           </Box>
 
           <Flex w='30%' justify={{ base: "start", md: "center" }}>
-            <Text fontSize={{ base: "12px", md: "14px" }}>{song.albumType}</Text>
+            <Text fontSize={{ base: "12px", md: "14px" }}>{song.type}</Text>
           </Flex>
         </Flex>
 

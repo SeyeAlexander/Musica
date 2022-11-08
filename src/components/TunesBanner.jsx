@@ -11,7 +11,7 @@ const TunesBanner = () => {
       direction={{ base: "column", md: "row" }}
     >
       <Image
-        src={songList[1].art}
+        src={songList[1].album.images[0].url}
         w={{ base: "full", md: "270px" }}
         h={{ base: "360px", md: "274px" }}
         borderRadius='20px'

@@ -10,10 +10,12 @@ import songList from "../data/songList";
 import heartIcon from "../assets/Heart.png";
 import { useEffect, useRef, useState } from "react";
 
-const AudioPlayer = ({ nowPlaying }) => {
+const AudioPlayer = ({ nowPlaying, trackList }) => {
   const audioPlay = useRef();
 
-  const [currentSong, setCurrentSong] = useState(songList[0]);
+  const [songsList, setSongsList] = useState(songList);
+
+  const [currentSong, setCurrentSong] = useState(songsList[0]);
   const [playBack, setPlayBack] = useState("play");
   const [loopPlayBack, setLoopPlayBack] = useState("yeah");
   const [shufflePlay, setShufflePlay] = useState("yeah");
@@ -22,7 +24,7 @@ const AudioPlayer = ({ nowPlaying }) => {
   const [isMute, setIsMute] = useState("yeah");
   const [duration, setDuration] = useState(0);
   const [icon, setIcon] = useState(PlayIcon);
-  const currentIndex = songList.findIndex((song) => song.id === currentSong.id);
+  const currentIndex = songsList.findIndex((song) => song.id === currentSong.id);
 
   const playBackPercentage = duration
     ? `${(audioPlay.current.currentTime / duration) * 100}%`
@@ -49,6 +51,21 @@ const AudioPlayer = ({ nowPlaying }) => {
     }
   });
 
+  useEffect(() => {
+    if (trackList) {
+      setSongsList(trackList);
+    }
+  }, [trackList]);
+
+  useEffect(() => {
+    if (nowPlaying) {
+      setCurrentSong(nowPlaying);
+      audioPlay.current.play();
+      setPlayBack("pause");
+      setIcon(PauseIcon);
+    }
+  }, [nowPlaying]);
+
   const handlePlay = () => {
     playBack === "play" ? audioPlay.current.play() : audioPlay.current.pause();
     playBack === "pause" ? setPlayBack("play") : setPlayBack("pause");
@@ -56,21 +73,19 @@ const AudioPlayer = ({ nowPlaying }) => {
   };
 
   const skipForward = async () => {
-    await setCurrentSong(songList[(currentIndex + 1) % songList.length]);
+    await setCurrentSong(songsList[(currentIndex + 1) % songsList.length]);
     audioPlay.current.play();
     setPlayBack("pause");
     setIcon(PauseIcon);
-    setVal(0);
   };
 
   const skipBack = async () => {
-    (currentIndex - 1) % songList.length === -1
-      ? await setCurrentSong(songList[songList.length - 1])
-      : await setCurrentSong(songList[(currentIndex - 1) % songList.length]);
+    (currentIndex - 1) % songsList.length === -1
+      ? await setCurrentSong(songsList[songsList.length - 1])
+      : await setCurrentSong(songsList[(currentIndex - 1) % songsList.length]);
     audioPlay.current.play();
     setPlayBack("pause");
     setIcon(PauseIcon);
-    setVal(0);
   };
 
   const shuffle = async () => {
@@ -82,11 +97,10 @@ const AudioPlayer = ({ nowPlaying }) => {
       return item;
     };
 
-    await setCurrentSong(shuffleList(songList));
+    await setCurrentSong(shuffleList(songsList));
     shufflePlay === "nah" ? setShufflePlay("yeah") : setShufflePlay("nah");
     audioPlay.current.play();
     setPlayBack("pause");
-    setVal(0);
   };
 
   const seek = (e) => {
@@ -121,19 +135,22 @@ const AudioPlayer = ({ nowPlaying }) => {
         h='80px'
         py='2'
       >
-        <audio ref={audioPlay} src={currentSong.song} />
-        {/* {!nowPlaying && <audio ref={audioPlay} src={currentSong.song} />}
-        {nowPlaying && <audio ref={audioPlay} src={nowPlaying} />} */}
+        <audio ref={audioPlay} src={currentSong.preview_url} />
 
         <Flex color='#EFEEE0' align='center'>
           <HStack w='17%'>
-            <Image src={currentSong.art} w='50px' h='50px' borderRadius='5px'></Image>
+            <Image
+              src={currentSong.album.images[0].url}
+              w='50px'
+              h='50px'
+              borderRadius='5px'
+            ></Image>
           </HStack>
 
           <VStack w='61%' align='flexStart' spacing={0}>
-            <Text fontSize='14px'>{currentSong.title}</Text>
+            <Text fontSize='14px'>{currentSong.name}</Text>
             <Text fontSize='12px' color='gray.300'>
-              {currentSong.artist}
+              {currentSong.album.artists[0].name}
             </Text>
           </VStack>
 
@@ -167,19 +184,16 @@ const AudioPlayer = ({ nowPlaying }) => {
         h='90px'
         opacity='0.99'
       >
-        <audio ref={audioPlay} src={currentSong.song} />
-
-        {/* {!nowPlaying && <audio ref={audioPlay} src={currentSong.song} />}
-        {nowPlaying && <audio ref={audioPlay} src={nowPlaying} />} */}
+        <audio ref={audioPlay} src={currentSong.preview_url} />
 
         <Flex color='#EFEEE0' ml='95px' h='full'>
           <HStack w='5%'>
-            <Image src={currentSong.art} w='49px' h='49px' borderRadius='14px' />
+            <Image src={currentSong.album.images[0].url} w='49px' h='49px' borderRadius='14px' />
           </HStack>
 
           <VStack w='8%' align='flexStart' spacing={0} mt={5} p={0}>
-            <Text fontSize='14px'>{currentSong.title}</Text>
-            <Text fontSize='10px'>{currentSong.artist}</Text>
+            <Text fontSize='14px'>{currentSong.name}</Text>
+            <Text fontSize='10px'>{currentSong.album.artists[0].name}</Text>
           </VStack>
 
           <VStack w='63%' py={4} px={6} spacing={1}>

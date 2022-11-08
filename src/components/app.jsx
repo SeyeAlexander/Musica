@@ -7,6 +7,7 @@ import Playlists from "./Playlists";
 import Collections from "./Collections";
 import NavBar from "./NavBar";
 import AudioPlayer from "./AudioPlayer";
+import songList from "../data/songList";
 
 const App = () => {
   const [token, setToken] = useState(null);
@@ -14,10 +15,11 @@ const App = () => {
   const [playlists, setPlaylists] = useState([]);
   const [songs, setSongs] = useState([]);
   const [nowPlaying, setNowPlaying] = useState("");
+  const [trackList, setTrackList] = useState("");
 
   const CLIENT_ID = "ffd3c6dfc19d4932ac951a7bfd6074a3";
-  const REDIRECT_URI = "https://master--aesthetic-centaur-30da84.netlify.app/";
-  // const REDIRECT_URI = "http://localhost:3000/";
+  // const REDIRECT_URI = "https://master--aesthetic-centaur-30da84.netlify.app/";
+  const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
@@ -70,9 +72,24 @@ const App = () => {
     getNewReleases();
   }, [token]);
 
-  // useEffect(() => {
-  //   handleTermSubmit("asake");
-  // }, []);
+  useEffect(() => {
+    const getTerm = async () => {
+      const res = await spotify.get("/search", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          q: "black panther",
+          type: "track",
+          limit: 11,
+        },
+      });
+
+      setSongs(res.data.tracks.items);
+    };
+
+    getTerm();
+  }, [token]);
 
   const handleSpotifyConnect = () => {
     setToken("");
@@ -93,11 +110,17 @@ const App = () => {
     });
 
     setSongs(res.data.tracks.items);
+    console.log(res.data.tracks.items);
   };
 
   const handleSongSelection = (songItem) => {
-    setNowPlaying(songItem.song);
-    console.log(songItem);
+    setNowPlaying(songItem);
+    setTrackList(songList);
+  };
+
+  const handleSongPick = (song) => {
+    setNowPlaying(song);
+    setTrackList(songs);
   };
 
   const logout = () => {
@@ -121,6 +144,7 @@ const App = () => {
                   songs={songs}
                   newReleases={newReleases}
                   onSongSelect={handleSongSelection}
+                  onSongPick={handleSongPick}
                 />
               }
             />
@@ -128,7 +152,7 @@ const App = () => {
             <Route path='/collections' element={<Collections />} />
           </Routes>
 
-          <AudioPlayer nowPlaying={nowPlaying} />
+          <AudioPlayer nowPlaying={nowPlaying} trackList={trackList} />
         </Container>
       </Box>
     </Router>

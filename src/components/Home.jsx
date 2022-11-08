@@ -5,7 +5,7 @@ import SideBar from "./SideBar";
 import Banner from "./Banner";
 import songList from "../data/songList";
 
-const Home = ({ logoutUser, playlists, songs, newReleases, onSongSelect }) => {
+const Home = ({ logoutUser, playlists, songs, newReleases, onSongSelect, onSongPick }) => {
   return (
     <Box>
       <Box ml={{ base: "0", md: "2" }} pt='80px' mb='6' color='#EFEEE0'>
@@ -17,7 +17,7 @@ const Home = ({ logoutUser, playlists, songs, newReleases, onSongSelect }) => {
 
       <Box pb={{ base: "90px", md: "120px" }}>
         {songs.length > 0 && <Banner banner={"Your search"} />}
-        {songs.length > 0 && <MusicList songs={songs} />}
+        {songs.length > 0 && <MusicList songs={songs} onSongPick={onSongPick} />}
 
         <Banner banner={"Made for Seye"} />
         <MusicList songList={songList} onSongSelect={onSongSelect} />

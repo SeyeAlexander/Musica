@@ -31,7 +31,7 @@ const HeroSection = ({ playlists }) => {
             Curated playlists
           </Text>
 
-          <VStack spacing='2' align='flexStart' w={{ base: "210px", md: "290px" }}>
+          <VStack spacing='2' align='flexStart' w={{ base: "210px", md: "100%" }}>
             <Text
               fontSize={{ base: "15px", md: "35px" }}
               lineHeight='42px'
