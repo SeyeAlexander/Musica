@@ -18,8 +18,8 @@ const App = () => {
   const [trackList, setTrackList] = useState("");
 
   const CLIENT_ID = "ffd3c6dfc19d4932ac951a7bfd6074a3";
-  const REDIRECT_URI = "https://master--aesthetic-centaur-30da84.netlify.app/";
-  // const REDIRECT_URI = "http://localhost:3000/";
+  // const REDIRECT_URI = "https://master--aesthetic-centaur-30da84.netlify.app/";
+  const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
@@ -66,6 +66,7 @@ const App = () => {
       });
 
       setNewReleases(data.albums.items);
+      console.log(data);
     };
 
     getPlaylists();
@@ -123,6 +124,16 @@ const App = () => {
     setTrackList(songs);
   };
 
+  const handleTunePick = (song) => {
+    setNowPlaying(song);
+    setTrackList(songList);
+  };
+
+  const handlePlayAll = () => {
+    setNowPlaying(songList[0]);
+    setTrackList(songList);
+  };
+
   const logout = () => {
     setToken("");
     window.localStorage.removeItem("token");
@@ -148,7 +159,10 @@ const App = () => {
                 />
               }
             />
-            <Route path='/playlists' element={<Playlists />} />
+            <Route
+              path='/playlists'
+              element={<Playlists onTunePick={handleTunePick} onPlayAll={handlePlayAll} />}
+            />
             <Route path='/collections' element={<Collections />} />
           </Routes>
 

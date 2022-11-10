@@ -33,7 +33,8 @@ const NavBar = ({ onSearchSubmit, onSpotifyConnect }) => {
       ml={{ base: "0", md: "6" }}
       position='fixed'
       top='0'
-      w={{ base: "93%", md: "93%" }}
+      // "1240px", check for responsiveness on other screen sizes
+      w={{ base: "93%", md: "1240px" }}
       bg='#1E1E1E'
       h='60px'
       opacity='0.99'

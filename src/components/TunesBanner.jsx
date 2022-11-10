@@ -1,9 +1,12 @@
 import { Text, Flex, Box, HStack, Image, VStack, Button } from "@chakra-ui/react";
-// import Pic from "../assets/Lead-image.png";
 import HeartIcon from "../assets/HeartP.svg";
 import songList from "../data/songList";
 
-const TunesBanner = () => {
+const TunesBanner = ({ onPlayAll }) => {
+  const handlePlayAll = () => {
+    onPlayAll();
+  };
+
   return (
     <Flex
       ml={{ base: "0px", md: "95px" }}
@@ -36,7 +39,13 @@ const TunesBanner = () => {
         </Text>
 
         <HStack spacing={4} pt={{ base: "6px", md: "30px" }} pb={{ base: "0px", md: "10px" }}>
-          <Button colorScheme='pink' variant='outline' borderRadius='20px' size='sm'>
+          <Button
+            colorScheme='pink'
+            variant='outline'
+            borderRadius='20px'
+            size='sm'
+            onClick={handlePlayAll}
+          >
             Play all
           </Button>
           <Button colorScheme='twitter' variant='outline' borderRadius='20px' size='sm'>

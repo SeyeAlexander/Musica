@@ -2,7 +2,11 @@ import { HStack, Box, Flex, Text, Image } from "@chakra-ui/react";
 import heartIcon from "../assets/Heart.png";
 import dots from "../assets/more-vertical.png";
 
-const TuneItem = ({ song }) => {
+const TuneItem = ({ song, onTunePick }) => {
+  const handleTuneSelect = () => {
+    onTunePick(song);
+  };
+
   return (
     <HStack
       w='full'
@@ -12,7 +16,7 @@ const TuneItem = ({ song }) => {
       py='3'
       pr={{ base: "0px", md: "50px" }}
       color='#EFEEE0'
-      key={song.id}
+      onClick={handleTuneSelect}
     >
       <HStack w='14%'>
         <Image

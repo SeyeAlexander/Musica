@@ -1,8 +1,16 @@
 import { Box, Flex, VStack, Image, Text, HStack } from "@chakra-ui/react";
+// import { useState } from "react";
 import HeartIcon from "../assets/Heart.svg";
+// import ShadedHeartIcon from "../assets/HeartP.svg";
 import Vector from "../assets/Vector.png";
 
 const HeroSection = ({ playlists }) => {
+  // const [icon, setIcon] = useState(HeartIcon);
+
+  // const changeIcon = () => {
+  //   icon === HeartIcon ? setIcon(ShadedHeartIcon) : setIcon(HeartIcon);
+  // };
+
   return (
     <Flex
       w='full'
@@ -107,7 +115,13 @@ const HeroSection = ({ playlists }) => {
                   </Flex>
 
                   <VStack pt={{ base: 0, md: "6" }}>
-                    <Box borderRadius='50%' color='yellow.900' border='1px' p='5px'>
+                    <Box
+                      borderRadius='50%'
+                      color='yellow.900'
+                      border='1px'
+                      p='5px'
+                      // onClick={changeIcon}
+                    >
                       <Image src={HeartIcon} w='14px' />
                     </Box>
                   </VStack>
