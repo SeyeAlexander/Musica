@@ -26,6 +26,10 @@ const AudioPlayer = ({ nowPlaying, trackList }) => {
   const [icon, setIcon] = useState(PlayIcon);
   const currentIndex = songsList.findIndex((song) => song.id === currentSong.id);
 
+  var count = 13;
+  const songTitle =
+    currentSong.name.slice(0, count) + (currentSong.name.length > count ? ".." : "");
+
   const playBackPercentage = duration
     ? `${(audioPlay.current.currentTime / duration) * 100}%`
     : "0%";
@@ -41,7 +45,7 @@ const AudioPlayer = ({ nowPlaying, trackList }) => {
       setDuration(audioPlay.current.duration);
       setVal(audioPlay.current.currentTime);
     }, 1000);
-  }, []);
+  });
 
   useEffect(() => {
     if (audioPlay.current.ended) {
@@ -148,7 +152,7 @@ const AudioPlayer = ({ nowPlaying, trackList }) => {
           </HStack>
 
           <VStack w='61%' align='flexStart' spacing={0}>
-            <Text fontSize='14px'>{currentSong.name}</Text>
+            <Text fontSize='14px'>{songTitle}</Text>
             <Text fontSize='12px' color='gray.300'>
               {currentSong.album.artists[0].name}
             </Text>
@@ -192,7 +196,7 @@ const AudioPlayer = ({ nowPlaying, trackList }) => {
           </HStack>
 
           <VStack w='8%' align='flexStart' spacing={0} mt={5} p={0}>
-            <Text fontSize='14px'>{currentSong.name}</Text>
+            <Text fontSize='14px'>{songTitle}</Text>
             <Text fontSize='10px'>{currentSong.album.artists[0].name}</Text>
           </VStack>
 

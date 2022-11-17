@@ -1,7 +1,11 @@
-import { Image, Text, VStack } from "@chakra-ui/react";
+import { Image, Text, useBreakpointValue, VStack } from "@chakra-ui/react";
 
 const ReleaseItem = ({ releaseItem }) => {
-  var count = 24;
+  const count = useBreakpointValue({
+    base: "12",
+    md: "22",
+  });
+
   const songTitle =
     releaseItem.name.slice(0, count) + (releaseItem.name.length > count ? ".." : "");
 

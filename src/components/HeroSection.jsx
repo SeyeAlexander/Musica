@@ -1,15 +1,24 @@
 import { Box, Flex, VStack, Image, Text, HStack } from "@chakra-ui/react";
-// import { useState } from "react";
+import { useState } from "react";
 import HeartIcon from "../assets/Heart.svg";
-// import ShadedHeartIcon from "../assets/HeartP.svg";
 import Vector from "../assets/Vector.png";
+// import ShadedHeartIcon from "../assets/HeartP.svg";
 
 const HeroSection = ({ playlists }) => {
   // const [icon, setIcon] = useState(HeartIcon);
-
   // const changeIcon = () => {
   //   icon === HeartIcon ? setIcon(ShadedHeartIcon) : setIcon(HeartIcon);
   // };
+
+  const [currentPlaylist, setCurrentPlaylist] = useState(playlists[0]);
+  const currentIndex = playlists.findIndex((playlist) => playlist.id === currentPlaylist.id);
+
+  setTimeout(() => {
+    const funct = async () => {
+      await setCurrentPlaylist(playlists[(currentIndex + 1) % playlists.length]);
+    };
+    funct();
+  }, [15000]);
 
   return (
     <Flex
@@ -46,7 +55,7 @@ const HeroSection = ({ playlists }) => {
               fontWeight='700'
               w={{ base: "full", md: "50%" }}
             >
-              {playlists[0].name}
+              {currentPlaylist.name}
             </Text>
             <Text
               fontSize='14px'
@@ -54,7 +63,7 @@ const HeroSection = ({ playlists }) => {
               fontWeight='400'
               w={{ base: "full", md: "50%" }}
             >
-              {playlists[0].description}
+              {currentPlaylist.description}
             </Text>
           </VStack>
 
@@ -67,7 +76,7 @@ const HeroSection = ({ playlists }) => {
         </VStack>
 
         <VStack w='50%' display={{ base: "none", md: "flex" }}>
-          <Image src={playlists[0].images[0].url} w='381px' h='full' borderRightRadius='30px' />
+          <Image src={currentPlaylist.images[0].url} w='381px' h='full' borderRightRadius='30px' />
         </VStack>
       </Flex>
 

@@ -37,7 +37,7 @@ html {
 
 .zoom:hover {
   transform: scale(1.03);
-  transition: all 1s ease-in-out;
+  transition: all 1s ease;
   cursor: pointer;
 }
 

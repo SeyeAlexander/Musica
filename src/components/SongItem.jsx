@@ -1,7 +1,11 @@
-import { Image, Text, VStack } from "@chakra-ui/react";
+import { Image, Text, VStack, useBreakpointValue } from "@chakra-ui/react";
 
 const SongItem = ({ songItem, onSongSelect }) => {
-  var count = 24;
+  const count = useBreakpointValue({
+    base: "12",
+    md: "22",
+  });
+
   const songTitle = songItem.name.slice(0, count) + (songItem.name.length > count ? ".." : "");
 
   const handleSelect = () => {
