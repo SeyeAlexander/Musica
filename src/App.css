@@ -36,14 +36,14 @@ html {
 }
 
 .zoom:hover {
-  transform: scale(1.04);
-  transition: all 0.5s ease;
-  padding-left: 4px;
+  transform: scale(1.03);
+  transition: all 1s ease-in-out;
+  cursor: pointer;
 }
 
-.zoomIcon:hover {
+.zoomIcon:active {
   transform: scale(1.2);
-  transition: all 0.5s ease;
+  transition: all 1s ease;
 }
 
 .hover01:hover {

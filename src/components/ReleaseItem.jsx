@@ -1,6 +1,10 @@
 import { Image, Text, VStack } from "@chakra-ui/react";
 
 const ReleaseItem = ({ releaseItem }) => {
+  var count = 24;
+  const songTitle =
+    releaseItem.name.slice(0, count) + (releaseItem.name.length > count ? ".." : "");
+
   return (
     <VStack className='zoom' spacing={2} align='flexStart' pt={2}>
       <Image
@@ -10,7 +14,7 @@ const ReleaseItem = ({ releaseItem }) => {
         borderRadius='15px'
       />
       <Text fontSize='12px' fontWeight='thin' w={{ base: "100px", md: "150px" }}>
-        {releaseItem.name}
+        {songTitle}
       </Text>
     </VStack>
   );

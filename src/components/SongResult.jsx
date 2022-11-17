@@ -1,6 +1,9 @@
 import { Image, Text, VStack } from "@chakra-ui/react";
 
 const SongResult = ({ song, onSongPick }) => {
+  var count = 24;
+  const songTitle = song.name.slice(0, count) + (song.name.length > count ? ".." : "");
+
   const handleSelect = () => {
     onSongPick(song);
   };
@@ -14,7 +17,7 @@ const SongResult = ({ song, onSongPick }) => {
         borderRadius='10px'
       />
       <Text fontSize='12px' fontWeight='thin' w={{ base: "100px", md: "150px" }}>
-        {song.name}
+        {songTitle}
       </Text>
     </VStack>
   );

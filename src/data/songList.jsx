@@ -22,7 +22,7 @@ import pheelzArt from "../assets/musiclist/PheelzArt.webp";
 
 // had to specify local dataset in this format,
 // this is the format in which results are returned by the spotify api,
-// to give a level of uniformity and avoid duplicate function lines in the audioplayer component
+// this is to give a level of uniformity and avoid duplicate function lines in the audioplayer component
 const songList = [
   {
     id: "123",
